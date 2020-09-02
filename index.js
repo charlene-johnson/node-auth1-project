@@ -14,7 +14,7 @@ server.use(cors())
 server.use(express.json())
 server.use(session({
     resave: false, // avoids recreating sessions that have not changed
-    saveUnititialized: false, // to comply with GDPR laws
+    saveUninitialized: false, // to comply with GDPR laws
     secret: "keep it secret, keep it safe", // cryptographically sign the cookie
     store: new KnexSessionStore({
         knex: db, // configured instance of knex
@@ -22,7 +22,7 @@ server.use(session({
     })
 }))
 
-server.use(usersRouter)
+server.use("/api", usersRouter)
 
 server.use((err, req, res, next) => {
     console.log(err)
